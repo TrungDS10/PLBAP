@@ -62,7 +62,7 @@ The pipeline consists of two main stages:
 
 **Training:**
 
-* Make sure your `model/model.py` file defines the `Model` class with input dimensions matching the embeddings in your JSON file (e.g., 640 for ESM, 384 for ChemBERTa, 1024 for ProtT5, 768 for Molformer,...).
+* Make sure your `model/model.py` file defines the `Model` class with input dimensions matching the embeddings in your JSON file (e.g., 1280 for ESM, 1024 for ProtT5, 768 for Molformer and ChemBERTa,...).
 * Run the training script:
     ```bash
     python main.py
