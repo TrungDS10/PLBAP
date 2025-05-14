@@ -80,14 +80,6 @@ The pipeline consists of two main stages:
     ```
 * The script will load the specified benchmark files, generate embeddings on-the-fly using the `EmbeddingExtractor`, predict affinities using the loaded model, and print results (potentially including metrics if true values are available in the benchmark files).
 
-## Future Work
-
-* Fine-tuning LLMs on the affinity task.
-* Exploring advanced embedding fusion techniques (e.g., cross-attention).
-* Evaluating newer LLMs and architectures.
-* Incorporating lightweight structural information.
-* Improving model interpretability and uncertainty quantification.
-
 ## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
