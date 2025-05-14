@@ -8,7 +8,7 @@ This repository contains the code for predicting protein-ligand binding affinity
 
 Predicting how strongly a potential drug (ligand) binds to its target protein is crucial in drug discovery. This project implements and explores a deep learning framework that predicts binding affinity ($pK_d$) using only protein amino acid sequences and ligand SMILES strings.
 
-The core idea is to leverage powerful pre-trained LLMs (like ProtT5, MolFormer, ESM, ChemBERTa) as feature extractors to convert sequences into numerical embeddings. A downstream feed-forward neural network then uses these embeddings to predict the binding affinity. This approach avoids the need for complex 3D structural data, offering a potentially faster and more broadly applicable method for virtual screening.
+The core idea is to leverage powerful pre-trained LLMs (like ProtT5, MolFormer, ESM, ChemBERTa) as feature extractors to convert sequences into numerical embeddings. A downstream feed-forward neural network then uses these embeddings to predict the binding affinity. This approach avoids the need for complex 3D structural data, offering a faster and more broadly applicable method for virtual screening.
 
 ## Motivation
 
@@ -49,9 +49,9 @@ The pipeline consists of two main stages:
 
 2.  **Download Pre-computed Embeddings:**
     * You need the JSON file containing the pre-computed embeddings corresponding to the LLMs your model expects.
-    * **Example for ESM + ChemBERTa:** Download `esm_chemberta_embeddings.json` if you generated it using `dataset_creation.py`.
+    * **Example for ESM + ChemBERTa:** Run the dataset_creation.ipynb to create the binding_affinity_100k_raw.csv. Then run the `dataset_creation.py` to create `esm_chemberta_embeddings.json`
     * **Example for Original BAPULM:** Download `prottrans_molformer_embeddings.json` from https://huggingface.co/datasets/radh25sh/BAPULM/tree/main
-    * **Place the downloaded `.json` file inside the `data/` directory.** The specific filename should match the `dataset_path` specified in `config.yaml`.
+    * **Place the downloaded `.json` file inside the `data/` directory.** The filename should match the `dataset_path` specified in `config.yaml`.
 
 ## Usage
 
@@ -79,13 +79,6 @@ The pipeline consists of two main stages:
     python inference.py
     ```
 * The script will load the specified benchmark files, generate embeddings on-the-fly using the `EmbeddingExtractor`, predict affinities using the loaded model, and print results (potentially including metrics if true values are available in the benchmark files).
-
-## Results Summary
-
-This approach achieves strong performance on standard benchmarks:
-
-* **Original BAPULM (ProtT5 + MolFormer):** Achieved high Pearson R values (e.g., ~0.91-0.92 on Test2016/Benchmark1k, ~0.81 on CSAR-HiQ).
-* **ESM + ChemBERTa Exploration:** Expected to yield comparable or potentially slightly different performance depending on the specific pretrained variant model that we choose, highlighting the impact of LLM choice.
 
 ## Future Work
 
